@@ -10,11 +10,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dev.vm.network "private_network", ip: "192.168.33.30"
     dev.vm.network :forwarded_port, guest: 3306, host: 3306 # mysql
 
+    dev.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+
     dev.vm.post_up_message = "Dev mini curso de vagrant\n IP: 192.168.33.30"
   end
 
   config.vm.define :production do |pro|
     pro.vm.network "private_network", ip: "192.168.33.31"
+
+    pro.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
 
     pro.vm.post_up_message = "Prod mini curso de vagrant\n IP: 192.168.33.31"
   end

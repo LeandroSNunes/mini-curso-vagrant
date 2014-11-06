@@ -21,4 +21,5 @@ include mysql::client
 
 mysql::user { 'vagrant':
   password => "12345",
+  require  => Class['mysql::client'],
 }

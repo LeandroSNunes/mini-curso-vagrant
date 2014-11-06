@@ -3,7 +3,6 @@ class mysql::server (
 ){ 
   include mysql::params
   include mysql::dependencies
-  include environment::params
 
   package { "mysql-server":
     ensure  => installed,

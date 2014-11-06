@@ -1,0 +1,49 @@
+####### ADENA PUPPET ############
+# ARQUIVO GERENCIADO PELO PUPPET
+
+[client]
+port                  = <%= scope.lookupvar('mysql::params::port') %>
+socket                = <%= scope.lookupvar('mysql::params::socket') %>
+
+[isamchk]
+key_buffer            = <%= scope.lookupvar('mysql::params::key_buffer') %>
+
+[mysqld]
+user                  = <%= scope.lookupvar('mysql::params::user') %>
+basedir               = <%= scope.lookupvar('mysql::params::basedir') %>
+bind-address          = <%= @allow_external_access ? scope.lookupvar('mysql::params::bind_address_external') : scope.lookupvar('mysql::params::bind_address') %>
+datadir               = <%= scope.lookupvar('mysql::params::datadir') %>
+expire_logs_days      = <%= scope.lookupvar('mysql::params::expire_logs_days') %>
+key_buffer            = <%= scope.lookupvar('mysql::params::key_buffer') %>
+log-error             = <%= scope.lookupvar('mysql::params::log_error') %>
+max_allowed_packet    = <%= scope.lookupvar('mysql::params::max_allowed_packet') %>
+max_binlog_size       = <%= scope.lookupvar('mysql::params::max_binlog_size') %>
+max_connections       = <%= scope.lookupvar('mysql::params::max_connections') %>
+myisam_recover        = <%= scope.lookupvar('mysql::params::myisam_recover') %>
+pid-file              = <%= scope.lookupvar('mysql::params::pid_file') %>
+port                  = <%= scope.lookupvar('mysql::params::port') %>
+query_cache_limit     = <%= scope.lookupvar('mysql::params::query_cache_limit') %>
+query_cache_size      = <%= scope.lookupvar('mysql::params::query_cache_size') %>
+skip-external-locking
+socket                = <%= scope.lookupvar('mysql::params::socket') %>
+ssl                   = <%= scope.lookupvar('mysql::params::ssl') %>
+ssl-ca                = <%= scope.lookupvar('mysql::params::ssl_ca') %>
+ssl-cert              = <%= scope.lookupvar('mysql::params::ssl_cert') %>
+ssl-key               = <%= scope.lookupvar('mysql::params::ssl_key') %>
+thread_cache_size     = <%= scope.lookupvar('mysql::params::thread_cache_size') %>
+thread_stack          = <%= scope.lookupvar('mysql::params::thread_stack') %>
+tmpdir                = <%= scope.lookupvar('mysql::params::tmpdir') %>
+lc-messages-dir       = <%= scope.lookupvar('mysql::params::lc_messages_dir') %>
+
+[mysqld_safe]
+log-error             = <%= scope.lookupvar('mysql::params::log_error') %>
+nice                  = <%= scope.lookupvar('mysql::params::nice') %>
+socket                = <%= scope.lookupvar('mysql::params::socket') %>
+
+[mysqldump]
+max_allowed_packet    = <%= scope.lookupvar('mysql::params::max_allowed_packet') %>
+quick
+quote-names
+
+
+!includedir /etc/mysql/conf.d/

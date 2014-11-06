@@ -15,6 +15,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--cpus", "1"]
     end
 
+    dev.vm.provision :puppet do |puppet|
+      puppet.module_path   = "modules"
+      puppet.manifest_file = "development.pp"
+      puppet.options       = "--verbose --debug"
+    end
+
     dev.vm.post_up_message = "Dev mini curso de vagrant\n IP: 192.168.33.30"
   end
 
@@ -24,6 +30,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     pro.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+
+    pro.vm.provision :puppet do |puppet|
+      puppet.module_path   = "modules"
+      puppet.manifest_file = "production.pp"
     end
 
     pro.vm.post_up_message = "Prod mini curso de vagrant\n IP: 192.168.33.31"

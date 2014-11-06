@@ -27,6 +27,7 @@ mysql::user { 'vagrant':
 exec { 'add-repository-nginx':
   command => 'add-apt-repository ppa:nginx/stable',
   unless  => 'grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/* | grep nginx',
+  require => Package['python-software-properties'],
 }
 
 package { "nginx":
